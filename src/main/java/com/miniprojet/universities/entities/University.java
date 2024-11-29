@@ -19,6 +19,7 @@ public class University {
 	private String adresseUni;
 	private int numberEtudiants;
 	private Date dateCreation;
+	private String email;
 	
 	@ManyToOne
 	@JoinColumn(name = "idDom")
