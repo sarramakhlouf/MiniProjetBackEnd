@@ -3,8 +3,13 @@ package com.miniprojet.universities.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,27 +28,32 @@ public class UniversityRESTController {
 	@Autowired
 	UniversityService universityService;
 	
-	@RequestMapping(method = RequestMethod.GET) 
+	@RequestMapping(path="all", method = RequestMethod.GET) 
 	public List<University> getAllUniversities() { 
 		return universityService.getAllUniversities(); 
 	} 
 	
-	@RequestMapping(value="/{id}",method = RequestMethod.GET) 
+	@RequestMapping(value="/getbyid/{id}",method = RequestMethod.GET)
+	//@GetMapping("getbyid/{id}")
 	public University getUniversityById(@PathVariable("id") Long id) {  
 		return universityService.getUniversity(id); 
 	} 
 	
-	@RequestMapping(method = RequestMethod.POST) 
+	@RequestMapping(value = "/adduni", method = RequestMethod.POST) 
+	//@PostMapping("/adduni")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public University createUniversity(@RequestBody University university) { 
 		return universityService.saveUniversity(university); 
 	}
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.PUT) 
+	@RequestMapping(value="/updateuni", method = RequestMethod.PUT) 
+	//@PutMapping("/updateuni")
 	public University updateUniversity(@RequestBody University university) { 
 		return universityService.updateUniversity(university); 
 	} 
 	
-	@RequestMapping(value="/{id}",method = RequestMethod.DELETE) 
+	@RequestMapping(value="deluni/{id}",method = RequestMethod.DELETE) 
+	//@DeleteMapping("deluni/{id}")
 	public void deleteUniversity(@PathVariable("id") Long id) { 
 		universityService.deleteUniversityById(id); 
 	}

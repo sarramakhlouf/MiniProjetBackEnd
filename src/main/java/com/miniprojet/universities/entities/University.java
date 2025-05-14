@@ -24,27 +24,29 @@ public class University {
 	@ManyToOne
 	@JoinColumn(name = "idDom")
 	private Domaine domaine;
-	
+
 	public University() {
 		super();
 	}
 
-	public University(String nomUni, String adresseUni, int numberEtudiants, Date dateCreation, Domaine domaine) {
+	public University(String nomUni, String adresseUni, int numberEtudiants, Date dateCreation, String email) {
 		super();
 		this.nomUni = nomUni;
 		this.adresseUni = adresseUni;
 		this.numberEtudiants = numberEtudiants;
 		this.dateCreation = dateCreation;
-		this.domaine = domaine;
+		this.email = email;
 	}
-	
 
-	public University(String nomUni, String adresseUni, int numberEtudiants, Date dateCreation) {
+	public University(String nomUni, String adresseUni, int numberEtudiants, Date dateCreation, String email,
+			Domaine domaine) {
 		super();
 		this.nomUni = nomUni;
 		this.adresseUni = adresseUni;
 		this.numberEtudiants = numberEtudiants;
 		this.dateCreation = dateCreation;
+		this.email = email;
+		this.domaine = domaine;
 	}
 
 	public Long getIdUni() {
@@ -63,6 +65,14 @@ public class University {
 		this.nomUni = nomUni;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getAdresseUni() {
 		return adresseUni;
 	}
@@ -87,12 +97,6 @@ public class University {
 		this.dateCreation = dateCreation;
 	}
 
-	@Override
-	public String toString() {
-		return "University [idUni=" + idUni + ", nomUni=" + nomUni + ", adresseUni=" + adresseUni + ", NumberEtudiants="
-				+ numberEtudiants + ", dateCreation=" + dateCreation + "]";
-	}
-
 	public Domaine getDomaine() {
 		return domaine;
 	}
@@ -100,6 +104,14 @@ public class University {
 	public void setDomaine(Domaine domaine) {
 		this.domaine = domaine;
 	}
+
+	@Override
+	public String toString() {
+		return "University [idUni=" + idUni + ", nomUni=" + nomUni + ", adresseUni=" + adresseUni + ", numberEtudiants="
+				+ numberEtudiants + ", dateCreation=" + dateCreation + ", email=" + email + ", domaine=" + domaine
+				+ "]";
+	}
+	
 	
 }
 	

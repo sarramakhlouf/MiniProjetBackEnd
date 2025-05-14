@@ -18,7 +18,7 @@ class UniversitiesApplicationTests {
 	private UniversityRepository universityRepository; 
 	@Test 
 	public void testCreateUniversity() { 
-		University uni = new University("iset","nabeul",1500,new Date()); 
+		University uni = new University("iset","nabeul",1500,new Date(), "isetn@gmail.com"); 
 		universityRepository.save(uni); 
 	}
 	@Test 
